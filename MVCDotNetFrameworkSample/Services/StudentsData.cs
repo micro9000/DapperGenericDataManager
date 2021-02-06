@@ -9,12 +9,13 @@ using Unity;
 
 namespace MVCDotNetFrameworkSample.Services
 {
-    public class StudentsData : DataManagerCRUD<Student>
+    public class StudentsData : DataManagerCRUD<Student>, IStudentsData
     {
+
         private readonly IDbConnectionFactory _dbConnectionFactory;
 
-        public StudentsData([Dependency("Main")] IDbConnectionFactory dbConnectionFactory) 
-            : base (DataManagerCRUDEnums.DatabaseAdapter.mysqlconnection, dbConnectionFactory)
+        public StudentsData([Dependency("Main")] IDbConnectionFactory dbConnectionFactory)
+            : base(DataManagerCRUDEnums.DatabaseAdapter.mysqlconnection, dbConnectionFactory)
         {
             _dbConnectionFactory = dbConnectionFactory;
         }

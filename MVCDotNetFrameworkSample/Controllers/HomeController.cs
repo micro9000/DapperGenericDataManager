@@ -3,14 +3,27 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using MVCDotNetFrameworkSample.Models;
+using MVCDotNetFrameworkSample.Services;
 
 namespace MVCDotNetFrameworkSample.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly IStudentsData _studentsData;
+
+        public HomeController(IStudentsData studentsData)
+        {
+            _studentsData = studentsData;
+        }
+
         public ActionResult Index()
         {
-            return View();
+            DisplayStudentModel model = new DisplayStudentModel();
+
+            model.Students = _studentsData.GetAll();
+
+            return View(model);
         }
 
         public ActionResult About()

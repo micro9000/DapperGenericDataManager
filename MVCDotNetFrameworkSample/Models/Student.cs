@@ -6,7 +6,7 @@ using System.Web;
 
 namespace MVCDotNetFrameworkSample.Models
 {
-    [Table("AreasDepts")]
+    [Table("Students")]
     public class Student
     {
         [Key]
