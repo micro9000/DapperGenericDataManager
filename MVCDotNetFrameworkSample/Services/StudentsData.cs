@@ -27,27 +27,5 @@ namespace MVCDotNetFrameworkSample.Services
                 StdNum = stdNum
             });
         }
-
-
-        // Use dapper only
-        public long[] GetAllPLSTIDsByOriginator(string originatorFFId, int[] overAllStatus)
-        {
-            string query = @"SELECT id FROM ProductLotScraps 
-							WHERE originatorFFID=@OriginatorFFId AND overallStatusEnumVal IN @OverallStatus";
-
-            long[] results = { };
-
-            using (var conn = _dbConnectionFactory.CreateConnection())
-            {
-                results = conn.Query<long>(query, new
-                {
-                    OriginatorFFId = originatorFFId,
-                    OverallStatus = overAllStatus
-                }).ToList().ToArray();
-                conn.Close();
-            }
-
-            return results;
-        }
     }
 }
